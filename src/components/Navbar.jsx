@@ -4,7 +4,7 @@ import { MenuIcon, HomeIcon, ChatAltIcon, UserCircleIcon, CalendarIcon, SearchIc
 export function Navbar({ isOpen, onToggle }) {
   return (
     <div className="flex items-center justify-between px-5 h-[8vh] tablet:h-16 bg-gray-800 text-white w-screen">
-      <h1 className="phone:text-xs tablet:text-lg laptop:text-lg desktop:text-xl font-bold phone:ml-auto tablet:ml-16 laptop:ml-16 desktop:ml-20">
+      <h1 className=" font-montserrat  phone:text-xs tablet:text-xl laptop:text-2xl desktop:text-3xl font-bold phone:ml-auto tablet:ml-16 laptop:ml-16 desktop:ml-16">
         ORGANISATION COMPLIANCE OVERVIEW
       </h1>
       <div className="flex items-center space-x-4">

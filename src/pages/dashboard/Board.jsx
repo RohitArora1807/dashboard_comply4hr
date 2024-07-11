@@ -12,7 +12,7 @@ import Calender_Card from "./Calender_Card";
 const Board = () => {
   return (
     <div className="w-full   pt-4 tablet:pl-14 ">
-      <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+      <div className="flex flex-col laptop:flex-row space-y-2 md:space-y-0 md:space-x-2">
         <div className="flex-1">
           {/* Row of 5 summary cards */}
           <Summary_Cards />
@@ -42,7 +42,7 @@ const Board = () => {
         </div>
 
     {/* Right sidebar */}
-    <div className="w-full sm:w-1/2 md:w-1/3 flex flex-col space-y-2 bg-white shadow-md rounded-lg p-2">
+    <div className="w-full laptop:w-1/4 flex flex-col space-y-2 bg-white shadow-md rounded-lg p-2">
           {/* Upcoming events card */}
           <Upcoming_Card />
 

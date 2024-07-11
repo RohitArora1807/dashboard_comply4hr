@@ -99,7 +99,6 @@ const CalendarCard = () => {
 
   return (
     <div className="bg-white shadow-md rounded-lg p-2">
-      <h2 className="text-xs font-bold mb-2">Calendar</h2>
       {renderHeader()}
       {renderDays()}
       {renderCells()}
