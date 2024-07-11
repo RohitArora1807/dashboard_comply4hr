@@ -1,20 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Lic_Reg_Card = () => {
+  const [tableData, setTableData] = useState([]);
   const [toggleState, setToggleState] = useState(false);
 
   const toggleSwitch = () => {
     setToggleState(!toggleState);
   };
+  const types = ["Factories License", "S&E Regn.", "CLRA License", "Trade License"];
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('/Lic.json'); 
+            setTableData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
+    fetchData();
+}, []);
   return (
-    <div className="bg-white shadow-md rounded-lg p-2 w-1/2 overflow-hidden  ">
+    <div className="bg-white shadow-md rounded-lg p-2 w-full md:w-1/2 overflow-hidden">
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-sm font-bold">License & Registrations</h2>
 
         {/* Sliding Toggle Switch */}
         <div
-          className={`relative w-28 h-5 rounded bg-gray-300 cursor-pointer`}
+          className="relative w-28 h-5 rounded bg-gray-300 cursor-pointer"
           onClick={toggleSwitch}
         >
           <div
@@ -29,10 +44,7 @@ const Lic_Reg_Card = () => {
 
       {/* Conditional Rendering */}
       {toggleState ? (
-        <div
-          className="grid grid-rows-2 gap-4 overflow-y-auto h-36"
-          style={{ gridTemplateColumns: "repeat(4, auto)" }}
-        >
+        <div className="grid grid-rows-2 gap-4 overflow-y-auto h-36" style={{ gridTemplateColumns: "repeat(4, auto)" }}>
           {Array.from({ length: 8 }).map((_, index) => (
             <div key={index} className="bg-gray-200 p-2 rounded-md shadow">
               <p>Data {index + 1}</p>
@@ -53,17 +65,17 @@ const Lic_Reg_Card = () => {
               </tr>
             </thead>
             <tbody>
-              {Array.from({ length: 10 }).map((_, index) => (
-                <tr className="even:bg-white odd:bg-gray-400" key={index}>
-                  <td className="text-xs py-1 px-2 border-b">Data 1</td>
-                  <td className="text-xs py-1 px-2 border-b">Data 2</td>
-                  <td className="text-xs py-1 px-2 border-b">Data 3</td>
-                  <td className="text-xs py-1 px-2 border-b">Data 1</td>
-                  <td className="text-xs py-1 px-2 border-b">Data 2</td>
-                  <td className="text-xs py-1 px-2 border-b">Data 3</td>
-                </tr>
-              ))}
-            </tbody>
+          {tableData.map((row, index) => (
+            <tr className="even:bg-white odd:bg-gray-300" key={index}>
+              <td className="text-xs py-1 px-2 border-b font-bold">{types[index]}</td>
+              <td className="text-xs py-1 px-2 border-b text-center">{row.valid}</td>
+              <td className="text-xs py-1 px-2 border-b text-center">{row["<30-Day"]}</td>
+              <td className="text-xs py-1 px-2 border-b text-center">{row.expired}</td>
+              <td className="text-xs py-1 px-2 border-b text-center">{row.applied}</td>
+              <td className="text-xs py-1 px-2 border-b text-center">{row.upcoming}</td>
+            </tr>
+          ))}
+        </tbody>
           </table>
         </div>
       )}

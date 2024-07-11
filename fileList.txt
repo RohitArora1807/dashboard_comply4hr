@@ -1,0 +1,715 @@
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\App.css
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\App.js
+
+import React from 'react';
+import Board from './pages/dashboard/Board';
+import Layout from './components/Layout';
+import Sidebar from './components/Sidebar';
+
+function App() {
+  return (
+    <Layout>
+      <Board />
+    </Layout>
+  );
+}
+
+
+export default App;
+
+
+====================
+
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\components\Layout.jsx
+
+import React, { useState } from 'react';
+import Sidebar from './Sidebar';
+import Navbar from './Navbar';
+
+const Layout = ({ children }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const handleSidebarToggle = (isOpen) => {
+    setSidebarOpen(isOpen);
+  };
+
+  return (
+    <div className="flex h-screen overflow-hidden relative">
+      <Sidebar onToggle={handleSidebarToggle} />
+      
+      {sidebarOpen && (
+        <div className="fixed inset-0 bg-black opacity-50 z-10 pointer-events-none" />
+      )}
+
+      <div className={`flex-1 overflow-y-auto bg-gray-200 transition-all duration-300 ${sidebarOpen ? 'opacity-50' : 'opacity-100'}`}>
+        <Navbar open={sidebarOpen} setOpen={setSidebarOpen} />
+        <div className="p-4 flex space-x-4">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Layout;
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\components\Navbar.jsx
+
+import React from "react";
+import { BellIcon, UserCircleIcon, MenuIcon } from '@heroicons/react/outline';
+
+const Navbar = ({ open, setOpen }) => {
+  return (
+    
+    <div className={`flex items-center justify-between px-5 py-3 bg-gray-800 text-white `}>
+      <h1 className={`text-xl font-bold ml-20 `}>
+        ORGANISATION COMPLIANCE OVERVIEW
+      </h1>
+      <div className={`flex items-center space-x-4 `}>
+        <BellIcon className={`h-6 w-6 cursor-pointer `} />
+        <UserCircleIcon className={`h-8 w-8 cursor-pointer `} />
+        
+      </div>
+    </div>
+    
+  );
+};
+
+export default Navbar;
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\components\Sidebar.jsx
+
+import React, { useState } from "react";
+import { HomeIcon, ChatAltIcon, UserCircleIcon, CalendarIcon, SearchIcon, CogIcon, FolderIcon } from '@heroicons/react/solid';
+
+const Sidebar = ({ onToggle }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleMouseEnter = () => {
+    if (!open) {
+      setOpen(true);
+      onToggle(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (open) {
+      setOpen(false);
+      onToggle(false);
+    }
+  };
+
+  return (
+    <div
+      className="flex"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        className={`${
+          open ? "w-60" : "w-20"
+        } bg-gray-900 h-screen p-5 pt-8 fixed duration-300 shadow-lg z-20`}
+      >
+        <div className="flex items-center justify-center gap-x-2 mb-6">
+          <HomeIcon className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"} text-white h-6 w-6`} />
+          <h1
+            className={`text-white font-bold text-xl transition-opacity ${
+              open ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            Dashboard
+          </h1>
+        </div>
+        <ul className="pt-6 space-y-2">
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-gray-800 text-gray-300 text-sm items-center gap-x-4">
+            <HomeIcon className="origin-left duration-200 h-5 w-5" />
+            <span className={`${open ? "ml-2" : "hidden"}`}>
+              Home
+            </span>
+          </li>
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-gray-800 text-gray-300 text-sm items-center gap-x-4">
+            <ChatAltIcon className="origin-left duration-200 h-5 w-5" />
+            <span className={`${open ? "ml-2" : "hidden"}`}>
+              Messages
+            </span>
+          </li>
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-gray-800 text-gray-300 text-sm items-center gap-x-4">
+            <UserCircleIcon className="origin-left duration-200 h-5 w-5" />
+            <span className={`${open ? "ml-2" : "hidden"}`}>
+              Profile
+            </span>
+          </li>
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-gray-800 text-gray-300 text-sm items-center gap-x-4">
+            <CalendarIcon className="origin-left duration-200 h-5 w-5" />
+            <span className={`${open ? "ml-2" : "hidden"}`}>
+              Calendar
+            </span>
+          </li>
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-gray-800 text-gray-300 text-sm items-center gap-x-4">
+            <SearchIcon className="origin-left duration-200 h-5 w-5" />
+            <span className={`${open ? "ml-2" : "hidden"}`}>
+              Search
+            </span>
+          </li>
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-gray-800 text-gray-300 text-sm items-center gap-x-4">
+            <CogIcon className="origin-left duration-200 h-5 w-5" />
+            <span className={`${open ? "ml-2" : "hidden"}`}>
+              Settings
+            </span>
+          </li>
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-gray-800 text-gray-300 text-sm items-center gap-x-4">
+            <FolderIcon className="origin-left duration-200 h-5 w-5" />
+            <span className={`${open ? "ml-2" : "hidden"}`}>
+              Files
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;
+
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from '@material-tailwind/react';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Board.jsx
+
+import React from 'react';
+import Lic_Reg_Card from './Lic_Reg_Card';
+import Payroll_Comp_Chk_Card from './Payroll_Comp_Chk_Card';
+import Summary_Cards from './Summary_Cards';
+import Payments_Delay_Card from './Payments_Delay_Card';
+import Return_Delay_Card from './Return_Delay_Card';
+import Vendor_Compliance_Audit_Card from './Vendor_Compliance_Audit_Card';
+import Upcoming_Card from './Upcoming_Card';
+import Inspection_Return_Card from './Inspection_Return_Card';
+import Calender_Card from './Calender_Card';
+const Board = () => {
+
+
+  return (
+    <div className=' w-full ml-20 space-x-2'>
+    <div className="p-2 flex space-x-2">
+      <div className="flex-1">
+        {/* Row of 5 summary cards */}
+        <Summary_Cards />
+
+        {/* Flex container for the tables */}
+        <div className="flex space-x-2 mb-2">
+          {/* license and Rgistration table */}
+          <Lic_Reg_Card />
+
+          {/* payroll compliance table */}
+         
+          <Payroll_Comp_Chk_Card/>
+        </div>
+
+        {/* Flex container for Payments Delay, Return Delay, and Vendor Compliance Audits */}
+        <div className="flex space-x-2 mb-2">
+          <div className="flex-1 flex flex-col space-y-2">
+            {/* Payments Delay (Slippage Metrics) */}
+         <Payments_Delay_Card />
+
+            {/* Return Delay summary card */}
+         <Return_Delay_Card />
+          </div>
+
+          {/* Vendor Compliance Audits card */}
+          <Vendor_Compliance_Audit_Card />
+        </div>
+      </div>
+
+      {/* Right sidebar */}
+      <div className="w-1/4 space-y-2">
+        {/* Upcoming events card */}
+          <Upcoming_Card />
+
+        {/* Inspection and return card */}
+          <Inspection_Return_Card />
+
+        {/* Calendar card */}
+          <Calender_Card />
+      </div>
+    </div>
+    </div>
+  );
+};
+
+export default Board;
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Calender_Card.jsx
+
+import React from 'react'
+
+const Calender_Card = () => {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-2">
+    <h2 className="text-sm font-bold mb-2">Calendar</h2>
+    <p className="text-xs">Calendar details go here.</p>
+  </div>
+  )
+}
+
+export default Calender_Card
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Inspection_Return_Card.jsx
+
+import React from 'react'
+
+const Inspection_Return_Card = () => {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-2">
+    <h2 className="text-sm font-bold mb-1">Inspections & Returns</h2>
+    <div className="flex flex-col space-y-1">
+      <div className="flex justify-between items-center p-1 bg-gray-200 rounded">
+        <span className="text-xs">In Progress</span>
+        <span className="text-xs">(2)</span>
+      </div>
+      <div className="flex justify-between items-center p-1 bg-gray-200 rounded">
+        <span className="text-xs">Closed</span>
+        <span className="text-xs">(2)</span>
+      </div>
+    </div>
+  </div>
+  )
+}
+
+export default Inspection_Return_Card
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Lic_Reg_Card.jsx
+
+import React, { useState } from "react";
+
+const Lic_Reg_Card = () => {
+  const [toggleState, setToggleState] = useState(false);
+
+  const toggleSwitch = () => {
+    setToggleState(!toggleState);
+  };
+
+  return (
+    <div className="bg-white shadow-md rounded-lg p-2 w-1/2 overflow-hidden  ">
+      <div className="flex justify-between items-center mb-2">
+        <h2 className="text-sm font-bold">License & Registrations</h2>
+
+        {/* Sliding Toggle Switch */}
+        <div
+          className={`relative w-28 h-5 rounded bg-gray-300 cursor-pointer`}
+          onClick={toggleSwitch}
+        >
+          <div
+            className={`absolute text-xs left-0 top-0 w-14 h-5 flex items-center justify-center rounded bg-white shadow-md transform transition-transform duration-300 ${
+              toggleState ? "translate-x-full" : "translate-x-0"
+            }`}
+          >
+            {toggleState ? "Details" : "Overview"}
+          </div>
+        </div>
+      </div>
+
+      {/* Conditional Rendering */}
+      {toggleState ? (
+        <div
+          className="grid grid-rows-2 gap-4 overflow-y-auto h-36"
+          style={{ gridTemplateColumns: "repeat(4, auto)" }}
+        >
+          {Array.from({ length: 8 }).map((_, index) => (
+            <div key={index} className="bg-gray-200 p-2 rounded-md shadow">
+              <p>Data {index + 1}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="overflow-y-auto h-36" style={{ maxHeight: "150px" }}>
+          <table className="min-w-full bg-white">
+            <thead className="sticky top-0 bg-gray-600 text-white">
+              <tr className="bg-gray-600 text-white">
+                <th className="text-xs py-1 px-2 border-b">Type</th>
+                <th className="text-xs py-1 px-2 border-b">Valid</th>
+                <th className="text-xs py-1 px-2 border-b">&lt;30-Day</th>
+                <th className="text-xs py-1 px-2 border-b">Expired</th>
+                <th className="text-xs py-1 px-2 border-b">Applied</th>
+                <th className="text-xs py-1 px-2 border-b">Upcoming</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 10 }).map((_, index) => (
+                <tr className="even:bg-white odd:bg-gray-400" key={index}>
+                  <td className="text-xs py-1 px-2 border-b">Data 1</td>
+                  <td className="text-xs py-1 px-2 border-b">Data 2</td>
+                  <td className="text-xs py-1 px-2 border-b">Data 3</td>
+                  <td className="text-xs py-1 px-2 border-b">Data 1</td>
+                  <td className="text-xs py-1 px-2 border-b">Data 2</td>
+                  <td className="text-xs py-1 px-2 border-b">Data 3</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Lic_Reg_Card;
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Payments_Delay_Card.jsx
+
+import React, { useState } from "react";
+
+const Payments_Delay_Card = () => {
+    const [toggleState, setToggleState] = useState(false);
+
+    const toggleSwitch = () => {
+      setToggleState(!toggleState);
+    };
+  return (
+    <div className="bg-white shadow-md rounded-lg p-2  overflow-hidden  ">
+      <div className="flex justify-between items-center mb-2">
+    <h2 className="text-sm font-bold mb-2">Payments Delay (Slippage Metrics)</h2>
+     {/* Sliding Toggle Switch */}
+     <div
+          className={`relative w-28 h-5 rounded bg-gray-300 cursor-pointer`}
+          onClick={toggleSwitch}
+        >
+          <div
+            className={`absolute text-xs left-0 top-0 w-14 h-5 flex items-center justify-center rounded bg-white shadow-md transform transition-transform duration-300 ${
+              toggleState ? "translate-x-full" : "translate-x-0"
+            }`}
+          >
+            {toggleState ? "Details" : "Overview"}
+          </div>
+        </div>
+      </div>
+      <div className="overflow-y-auto h-36 " style={{ maxHeight: "150px" }}>
+        <table className="min-w-full bg-white">
+          <thead className="sticky top-0 bg-gray-600 text-white">
+        <tr className="bg-gray-600 text-white">
+          <th className="text-xs py-1 px-2 border-b">Header 1</th>
+          <th className="text-xs py-1 px-2 border-b">Header 2</th>
+          <th className="text-xs py-1 px-2 border-b">Header 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Array.from({ length: 10 }).map((_, index) => (
+          <tr className="even:bg-white odd:bg-gray-400" key={index}>
+            <td className="text-xs py-1 px-2 border-b">Data 1</td>
+            <td className="text-xs py-1 px-2 border-b">Data 2</td>
+            <td className="text-xs py-1 px-2 border-b">Data 3</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  )
+}
+
+export default Payments_Delay_Card
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Payroll_Comp_Chk_Card.jsx
+
+import React, { useState } from 'react';
+
+const Payroll_Comp_Chk_Card = () => {
+    const [toggleState, setToggleState] = useState(false);
+
+    const toggleSwitch = () => {
+      setToggleState(!toggleState);
+    };
+  return (
+    <div className="bg-white shadow-md rounded-lg p-2 w-1/2 overflow-hidden ">
+              <div className="flex justify-between items-center mb-2">
+      <h2 className="text-sm font-bold">
+        Payroll Compliance Check (NC Emp Count)
+      </h2>
+            {/* Sliding Toggle Switch */}
+            <div className={`relative w-28 h-5 rounded bg-gray-300 cursor-pointer`} onClick={toggleSwitch}>
+          <div className={`absolute text-xs left-0 top-0 w-14 h-5 flex items-center justify-center rounded bg-white shadow-md transform transition-transform duration-300 ${toggleState ? 'translate-x-full' : 'translate-x-0'}`}>
+            {toggleState ? 'Details' : 'Overview'}
+          </div>
+        </div>
+      </div>
+      <div className="overflow-y-auto h-36 " style={{ maxHeight: "150px" }}>
+        <table className="min-w-full bg-white">
+          <thead className="sticky top-0 bg-gray-600 text-white">
+            <tr className="bg-gray-600 text-white">
+              <th className="text-xs py-1 px-2 border-b">Entity Type</th>
+              <th className="text-xs py-1 px-2 border-b">May-24</th>
+              <th className="text-xs py-1 px-2 border-b">Apr-24</th>
+              <th className="text-xs py-1 px-2 border-b">Mar-24</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <tr className="even:bg-white odd:bg-gray-400" key={index}>
+                <td className="text-xs py-1 px-2 border-b">Data 1</td>
+                <td className="text-xs py-1 px-2 border-b">Data 2</td>
+                <td className="text-xs py-1 px-2 border-b">Data 3</td>
+                <td className="text-xs py-1 px-2 border-b">Data 3</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default Payroll_Comp_Chk_Card;
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Return_Delay_Card.jsx
+
+import React, { useState } from "react";
+
+const Payments_Delay_Card = () => {
+    const [toggleState, setToggleState] = useState(false);
+
+    const toggleSwitch = () => {
+      setToggleState(!toggleState);
+    };
+  return (
+    <div className="bg-white shadow-md rounded-lg p-2  overflow-hidden  ">
+      <div className="flex justify-between items-center mb-2">
+    <h2 className="text-sm font-bold mb-2">Return Delay (Slippage Metrics)</h2>
+     {/* Sliding Toggle Switch */}
+     <div
+          className={`relative w-28 h-5 rounded bg-gray-300 cursor-pointer`}
+          onClick={toggleSwitch}
+        >
+          <div
+            className={`absolute text-xs left-0 top-0 w-14 h-5 flex items-center justify-center rounded bg-white shadow-md transform transition-transform duration-300 ${
+              toggleState ? "translate-x-full" : "translate-x-0"
+            }`}
+          >
+            {toggleState ? "Details" : "Overview"}
+          </div>
+        </div>
+      </div>
+      <div className="overflow-y-auto h-36 " style={{ maxHeight: "150px" }}>
+        <table className="min-w-full bg-white">
+          <thead className="sticky top-0 bg-gray-600 text-white">
+        <tr className="bg-gray-600 text-white">
+          <th className="text-xs py-1 px-2 border-b">Header 1</th>
+          <th className="text-xs py-1 px-2 border-b">Header 2</th>
+          <th className="text-xs py-1 px-2 border-b">Header 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Array.from({ length: 10 }).map((_, index) => (
+          <tr className="even:bg-white odd:bg-gray-400" key={index}>
+            <td className="text-xs py-1 px-2 border-b">Data 1</td>
+            <td className="text-xs py-1 px-2 border-b">Data 2</td>
+            <td className="text-xs py-1 px-2 border-b">Data 3</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  )
+}
+
+export default Payments_Delay_Card
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Summary_Cards.jsx
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const SummaryCards = () => {
+    const [cardsData, setCardsData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('/data.json'); 
+                setCardsData(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []); 
+
+    return (
+        <div className="flex space-x-2 mb-2">
+            {/* Card 1 */}
+            {cardsData.map((card, index) => (
+                <div key={index} className="bg-white shadow-md rounded-lg p-2 flex-1">
+                    <h2 className="text-lg font-bold mb-1">{card.heading}</h2>
+                    <p className="text-sm">{card.content}</p>
+                </div>
+            ))}
+
+            {/* Card 2 */}
+            <div className="bg-white shadow-md rounded-lg p-2 flex-1">
+                <h2 className="text-lg font-bold mb-1">Card 2 Heading</h2>
+                <p className="text-sm">Content for Card 2</p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white shadow-md rounded-lg p-2 flex-1">
+                <h2 className="text-lg font-bold mb-1">Card 3 Heading</h2>
+                <p className="text-sm">Content for Card 3</p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-white shadow-md rounded-lg p-2 flex-1">
+                <h2 className="text-lg font-bold mb-1">Card 4 Heading</h2>
+                <p className="text-sm">Content for Card 4</p>
+            </div>
+
+            {/* Card 5 */}
+            <div className="bg-white shadow-md rounded-lg p-2 flex-1">
+                <h2 className="text-lg font-bold mb-1">Card 5 Heading</h2>
+                <p className="text-sm">Content for Card 5</p>
+            </div>
+        </div>
+    );
+}
+
+export default SummaryCards;
+
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Upcoming_Card.jsx
+
+import React from 'react'
+
+const Upcoming_Card = () => {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-2">
+    <h2 className="text-sm font-bold mb-1">UPCOMING</h2>
+    <ul>
+      {Array.from({ length: 5 }).map((_, index) => (
+        <li key={index} className="flex justify-between items-center mb-1 p-1 bg-gray-200 rounded">
+          <span className="text-xs">Event {index + 1}</span>
+          <button className="text-xs bg-gray-300 rounded px-2 py-1">View</button>
+        </li>
+      ))}
+    </ul>
+  </div>
+  )
+}
+
+export default Upcoming_Card
+
+====================
+
+File: C:\Users\GCV\Desktop\Northcap University - Rohit Arora(20CSU287)\dashBoard\dash_board\src\pages\dashboard\Vendor_Compliance_Audit_Card.jsx
+
+import React from 'react'
+
+const Vendor_Compliance_Audit_Card = () => {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-2 w-1/2">
+            <h2 className="text-lg font-bold mb-2">Vendor Compliance Audits</h2>
+            <div className="h-32"></div>
+          </div>
+  )
+}
+
+export default Vendor_Compliance_Audit_Card
+
+
+====================
+

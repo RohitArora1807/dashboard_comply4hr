@@ -1,0 +1,30 @@
+[
+    {
+      "valid": "3",
+      "<30-Day": "0",
+      "expired": "0",
+      "applied": "0",
+      "upcoming": "0"
+    },
+    {
+        "valid": "25",
+        "<30-Day": "0",
+        "expired": "0",
+        "applied": "5",
+        "upcoming": "0"
+      },
+      {
+        "valid": "80",
+        "<30-Day": "0",
+        "expired": "0",
+        "applied": "20",
+        "upcoming": "6"
+      },
+      {
+        "valid": "5",
+        "<30-Day": "0",
+        "expired": "0",
+        "applied": "1",
+        "upcoming": "0"
+      }
+  ]

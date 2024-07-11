@@ -8,6 +8,8 @@ function App() {
     <Layout>
       <Board />
     </Layout>
+    // <Layout />
+    // <Sidebar />
   );
 }
 

@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSidebarToggle = (isOpen) => {
     setSidebarOpen(isOpen);
   };
 
-  return (
-    <div className="flex h-screen overflow-hidden relative">
-      <Sidebar onToggle={handleSidebarToggle} />
-      
-      {sidebarOpen && (
-        <div className="fixed inset-0 bg-black opacity-50 z-10 pointer-events-none" />
-      )}
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
+  };
 
-      <div className={`flex-1 overflow-y-auto bg-gray-200 transition-all duration-300 ${sidebarOpen ? 'opacity-50' : 'opacity-100'}`}>
-        <Navbar open={sidebarOpen} setOpen={setSidebarOpen} />
-        <div className="p-4 flex space-x-4">
+
+  return (
+    <div className="flex">
+      <Sidebar onToggle={handleSidebarToggle} />
+      <div className="flex-1">
+      <Navbar isOpen={menuOpen} onToggle={handleMenuToggle} />
+      
+        <div className="p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           {children}
         </div>
       </div>

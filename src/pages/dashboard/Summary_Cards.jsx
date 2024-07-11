@@ -18,37 +18,32 @@ const SummaryCards = () => {
     }, []); 
 
     return (
-        <div className="flex space-x-2 mb-2">
-            {/* Card 1 */}
+        <div className="flex flex-wrap space-x-0 md:space-x-2 mb-2">
             {cardsData.map((card, index) => (
-                <div key={index} className="bg-white shadow-md rounded-lg p-2 flex-1">
-                    <h2 className="text-lg font-bold mb-1">{card.heading}</h2>
-                    <p className="text-sm">{card.content}</p>
+                <div key={index} className="bg-white shadow-md rounded-lg p-2 w-full md:flex-1 mb-2 md:mb-0">
+                    <h2 className="text-xl font-bold mb-1">{card.content}</h2>
+                    <p className="text-sm font-bold ">{card.heading}</p>
                 </div>
             ))}
-
-            {/* Card 2 */}
-            <div className="bg-white shadow-md rounded-lg p-2 flex-1">
-                <h2 className="text-lg font-bold mb-1">Card 2 Heading</h2>
-                <p className="text-sm">Content for Card 2</p>
+            
+            <div className="bg-white shadow-md rounded-lg p-2 w-full md:flex-1 mb-2 md:mb-0">
+            <h2 className="text-xl font-bold mb-1">3</h2>
+            <p className="text-sm font-bold ">Factory Sites</p>
             </div>
 
-            {/* Card 3 */}
-            <div className="bg-white shadow-md rounded-lg p-2 flex-1">
-                <h2 className="text-lg font-bold mb-1">Card 3 Heading</h2>
-                <p className="text-sm">Content for Card 3</p>
+            <div className="bg-white shadow-md rounded-lg p-2 w-full md:flex-1 mb-2 md:mb-0">
+            <h2 className="text-xl font-bold mb-1">30</h2>
+            <p className="text-sm font-bold ">S&E Sites</p>
             </div>
 
-            {/* Card 4 */}
-            <div className="bg-white shadow-md rounded-lg p-2 flex-1">
-                <h2 className="text-lg font-bold mb-1">Card 4 Heading</h2>
-                <p className="text-sm">Content for Card 4</p>
+            <div className="bg-white shadow-md rounded-lg p-2 w-full md:flex-1 mb-2 md:mb-0">
+            <h2 className="text-xl font-bold mb-1">100</h2>
+            <p className="text-sm font-bold ">Client Sites</p>
             </div>
 
-            {/* Card 5 */}
-            <div className="bg-white shadow-md rounded-lg p-2 flex-1">
-                <h2 className="text-lg font-bold mb-1">Card 5 Heading</h2>
-                <p className="text-sm">Content for Card 5</p>
+            <div className="bg-white shadow-md rounded-lg p-2 w-full md:flex-1 mb-2 md:mb-0">
+            <h2 className="text-xl font-bold mb-1">96.85%</h2>
+            <p className="text-sm font-bold ">Org. Score</p>
             </div>
         </div>
     );
