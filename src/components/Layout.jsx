@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 
@@ -6,8 +6,8 @@ const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleSidebarToggle = (isOpen) => {
-    setSidebarOpen(isOpen);
+  const handleSidebarToggle = () => {
+    setSidebarOpen(sidebarOpen);
   };
 
   const handleMenuToggle = () => {

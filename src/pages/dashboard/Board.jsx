@@ -1,13 +1,13 @@
 import React from "react";
-import Lic_Reg_Card from "./Lic_Reg_Card";
-import Payroll_Comp_Chk_Card from "./Payroll_Comp_Chk_Card";
-import Summary_Cards from "./Summary_Cards";
-import Payments_Delay_Card from "./Payments_Delay_Card";
-import Return_Delay_Card from "./Return_Delay_Card";
-import Vendor_Compliance_Audit_Card from "./Vendor_Compliance_Audit_Card";
-import Upcoming_Card from "./Upcoming_Card";
-import Inspection_Return_Card from "./Inspection_Return_Card";
-import Calender_Card from "./Calender_Card";
+import LIC_REG_CARD from "./LIC_REG_CARD";
+import PAYROLL_COMP_CHK_CARD from "./PAYROLL_COMP_CHK_CARD";
+import SUMMARY_CARDS from "./SUMMARY_CARDS";
+import PAYMENTS_DELAY_CARD from "./PAYMENTS_DELAY_CARD";
+import RETURN_DELAY_CARD from "./RETURN_DELAY_CARD";
+import VENDOR_COMPLIANCE_AUDIT_CARD from "./VENDOR_COMPLIANCE_AUDIT_CARD";
+import UPCOMING_CARD from "./UPCOMING_CARD";
+import INSPECTION_RETURN_CARD from "./INSPECTION_RETURN_CARD";
+import CALENDER_CARD from "./CALENDER_CARD";
 
 const Board = () => {
   return (
@@ -15,42 +15,42 @@ const Board = () => {
       <div className="flex flex-col laptop:flex-row space-y-2 md:space-y-0 md:space-x-2">
         <div className="flex-1">
           {/* Row of 5 summary cards */}
-          <Summary_Cards />
+          <SUMMARY_CARDS />
 
           {/* Flex container for the tables */}
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-2">
             {/* License and Registration table */}
-            <Lic_Reg_Card />
+            <LIC_REG_CARD />
 
             {/* Payroll compliance table */}
-            <Payroll_Comp_Chk_Card />
+            <PAYROLL_COMP_CHK_CARD />
           </div>
 
           {/* Flex container for Payments Delay, Return Delay, and Vendor Compliance Audits */}
           <div className="flex flex-col md:flex-row lg:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-2 ">
             <div className="flex-1 flex flex-col space-y-2 ">
               {/* Payments Delay (Slippage Metrics) */}
-              <Payments_Delay_Card />
+              <PAYMENTS_DELAY_CARD />
 
               {/* Return Delay summary card */}
-              <Return_Delay_Card />
+              <RETURN_DELAY_CARD />
             </div>
 
             {/* Vendor Compliance Audits card */}
-            <Vendor_Compliance_Audit_Card />
+            <VENDOR_COMPLIANCE_AUDIT_CARD />
           </div>
         </div>
 
     {/* Right sidebar */}
     <div className="w-full laptop:w-1/4 flex flex-col space-y-2 bg-white shadow-md rounded-lg p-2">
           {/* Upcoming events card */}
-          <Upcoming_Card />
+          <UPCOMING_CARD />
 
           {/* Inspection and return card */}
-          <Inspection_Return_Card />
+          <INSPECTION_RETURN_CARD />
 
           {/* Calendar card */}
-          <Calender_Card />
+          <CALENDER_CARD />
         </div>
       </div>
     </div>

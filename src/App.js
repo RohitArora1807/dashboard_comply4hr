@@ -1,12 +1,12 @@
 import React from 'react';
-import Board from './pages/dashboard/Board';
+import BOARD from './pages/dashboard/BOARD';
 import Layout from './components/Layout';
-import Sidebar from './components/Sidebar';
+
 
 function App() {
   return (
     <Layout>
-      <Board />
+      <BOARD />
     </Layout>
     // <Layout />
     // <Sidebar />
