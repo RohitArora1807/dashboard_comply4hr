@@ -7,7 +7,7 @@ const SummaryCards = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/data.json'); 
+                const response = await axios.get('/https://github.com/RohitArora1807/dashboard_comply4hr/blob/main/public/data.json'); 
                 setCardsData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
