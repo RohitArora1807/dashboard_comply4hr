@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dashboard_comply4hr/static/css/main.3a6c2c89.css",
+    "main.js": "/dashboard_comply4hr/static/js/main.9b186161.js",
+    "static/js/453.742710ad.chunk.js": "/dashboard_comply4hr/static/js/453.742710ad.chunk.js",
+    "index.html": "/dashboard_comply4hr/index.html",
+    "main.3a6c2c89.css.map": "/dashboard_comply4hr/static/css/main.3a6c2c89.css.map",
+    "main.9b186161.js.map": "/dashboard_comply4hr/static/js/main.9b186161.js.map",
+    "453.742710ad.chunk.js.map": "/dashboard_comply4hr/static/js/453.742710ad.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3a6c2c89.css",
+    "static/js/main.9b186161.js"
+  ]
+}
